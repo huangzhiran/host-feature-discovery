@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: host-feature-discovery
+  labels:
+    app.kubernetes.io/name: host-feature-discovery
+    app.kubernetes.io/version: 1.0.0-alpha
+    app.kubernetes.io/part-of: node-feature-discovery
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: host-feature-discovery
+      app.kubernetes.io/part-of: node-feature-discovery
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: host-feature-discovery
+        app.kubernetes.io/version: 1.0.0-alpha
+        app.kubernetes.io/part-of: node-feature-discovery
+    spec:
+      containers:
+        - image: huangzhiran/host-feature-discovery:1.0.0-alpha
+          name: host-feature-discovery
+          volumeMounts:
+            - name: output-dir
+              mountPath: "/etc/kubernetes/node-feature-discovery/features.d"
+      volumes:
+        - name: output-dir
+          hostPath:
+            path: "/etc/kubernetes/node-feature-discovery/features.d"
