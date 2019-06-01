@@ -4,7 +4,7 @@ metadata:
   name: host-feature-discovery
   labels:
     app.kubernetes.io/name: host-feature-discovery
-    app.kubernetes.io/version: 1.0.2-alpha
+    app.kubernetes.io/version: 1.0.3-alpha
     app.kubernetes.io/part-of: node-feature-discovery
 spec:
   selector:
@@ -15,11 +15,11 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: host-feature-discovery
-        app.kubernetes.io/version: 1.0.2-alpha
+        app.kubernetes.io/version: 1.0.3-alpha
         app.kubernetes.io/part-of: node-feature-discovery
     spec:
       containers:
-        - image: huangzhiran/host-feature-discovery:1.0.2-alpha
+        - image: huangzhiran/host-feature-discovery:1.0.3-alpha
           name: host-feature-discovery
           volumeMounts:
             - name: output-dir

@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os/exec"
+	"strconv"
 	"strings"
 )
 
@@ -28,7 +29,7 @@ type lscpuInfo struct {
 type lsblkInfo struct {
 	Lsblk []struct {
 		Name string `json:"name"`
-		Size int64  `json:"size"`
+		Size string `json:"size"`
 	} `json:"blockdevices"`
 }
 
@@ -47,7 +48,11 @@ func (h *hostInfo) getDiskInfo() error {
 		if strings.Contains(b.Name, "loop") {
 			continue
 		}
-		size += b.Size
+		s, err := strconv.ParseInt(b.Size, 10, 64)
+		if err != nil {
+			return err
+		}
+		size += s
 	}
 	h.diskSize = size
 	return nil
