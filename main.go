@@ -91,8 +91,8 @@ L:
 		}
 
 		log.Print("Writing labels to output file")
-		fmt.Fprintf(tmpOutputFile, "cpu-model=%s\n", info.cpuModel)
-		fmt.Fprintf(tmpOutputFile, "disk-size-bytes=%d\n", info.diskSize)
+		fmt.Fprintf(tmpOutputFile, "matpool.com/cpu-model=%s\n", info.cpuModel)
+		fmt.Fprintf(tmpOutputFile, "matpool.com/disk-size-bytes=%d\n", info.diskSize)
 
 		err = tmpOutputFile.Chmod(0644)
 		if err != nil {
